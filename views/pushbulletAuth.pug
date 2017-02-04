@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1 Twitch-Pushbullet
+	if flash
+		.alert.alert-danger(role="alert")= flash
+	p Step 2
+	p Connect your Pushbullet account: 
+		button
+			a(href=authUrl) Pushbullet

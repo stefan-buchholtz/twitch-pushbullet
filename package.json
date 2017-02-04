@@ -1,0 +1,38 @@
+{
+  "name": "twitch-pushbullet",
+  "version": "1.0.0",
+  "description": "Generate Pushbullet notifications for Twitch events ",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "keywords": [
+    "twitch",
+    "pushbullet"
+  ],
+  "author": "Stefan Buchholtz",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.4",
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "es6-promisify": "^5.0.0",
+    "express": "~4.14.0",
+    "express-session": "^1.14.2",
+    "follow-redirects": "^1.2.1",
+	"my_pool_sql": "*",
+    "mariasql": "^0.2.6",
+    "morgan": "~1.7.0",
+    "pug": "~2.0.0-beta6",
+    "pushbullet": "^1.4.3",
+    "raw-body": "^2.2.0",
+    "serve-favicon": "~2.3.0",
+    "twitch-api": "^0.4.5"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}

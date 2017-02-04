@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h1 Twitch-Pushbullet
+	if flash
+		.alert.alert-danger(role="alert")= flash
+	p Get 
+		a(href="https://www.pushbullet.com") Pushbullet 
+		| notifications when 
+		a(href="https://www.twitch.tv") Twitch 
+		| streamers you follow go live.
+	p Step 1
+	p Connect your Twitch account: 
+		button
+			a(href=authUrl) Twitch

@@ -1,0 +1,1 @@
+DEBUG=twitch-pushbullet:* npm start

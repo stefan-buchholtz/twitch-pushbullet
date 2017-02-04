@@ -1,33 +1,13 @@
 /* jshint esversion: 6 */
 
 const oauth2 = require('./services/oauth2.js');
-const config = require('./config.json');
-
-/*
-const databaseConnectionPool = new MariasqlPool(config.database);
-databaseConnection.on('error', (error) => {
-	console.log('databaseConnection error: ', error);
-	if (!databaseConnection.connected && !databaseConnection.connecting) {
-		console.log('database connection lost, attempting reconnect');
-		setTimeout(() => { databaseConnection.connect(); }, 5000);		
-	}
-});
-
-const streamers = require('./model/streamers.js')(databaseConnection);
-const users = require('./model/users.js')(databaseConnection);
-const usersMapStreamers = require('./model/usersMapStreamers.js')(databaseConnection);
-*/
+const config = require('./config.js');
 
 const twitchPushbulletService = require('./services/twitchPushbulletService.js');
-/*
-twitchPushbulletService.setUserDAO(users);
-twitchPushbulletService.setStreamerDAO(streamers);
-twitchPushbulletService.setUserMapStreamerDAO(usersMapStreamers);
-*/
 
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -40,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

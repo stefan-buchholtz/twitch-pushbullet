@@ -5,7 +5,7 @@ const async = require('async');
 require('../util/setExtension.js');
 const twitchApi = require('./twitchApi.js');
 const pushbulletApi = require('./pushbulletApi.js');
-const config = require('../config.json');
+const config = require('../config.js');
 
 const userDAO = require('../model/users.js');
 const streamerDAO = require('../model/streamers.js');

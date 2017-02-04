@@ -2,7 +2,7 @@
 
 const https = require('https');
 const getRawBody = require('raw-body');
-const config = require('../config.json');
+const config = require('../config.js');
 
 function getRequestHeaders(oauthToken) {
 	const headers = {

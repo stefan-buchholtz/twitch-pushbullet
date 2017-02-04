@@ -23,7 +23,7 @@
 		"hostname": "api.pushbullet.com",
 		"auth_path": "/oauth2/authorize",
 		"token_path": "/oauth2/token",
-		"client_id": "yTp4GcuKRhYHNSbJIOBfQxjmiLu2kMwC",
-		"client_secret": "lrj2EDNUU08MXV9bJR9jEmi5oClsTgdm"
+		"client_id": "KbmGvJ8QwyhnElr41ZFhjoVAF1OCTzZ2",
+		"client_secret": "IZONkViPGNiWN4lA3mD1Ra1Y8iy1htKC"
 	}
 }

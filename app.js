@@ -2,6 +2,7 @@
 
 const oauth2 = require('./services/oauth2.js');
 const config = require('./config.js');
+console.log(config.app.url);
 
 const twitchPushbulletService = require('./services/twitchPushbulletService.js');
 
@@ -40,7 +41,7 @@ const twitchOAuth2 = oauth2({
 	hostname: 'api.twitch.tv',
 	auth_path: '/kraken/oauth2/authorize',
 	token_path: '/kraken/oauth2/token',
-	redirect_uri: config.baseUrl + '/twitchAuthResult',
+	redirect_uri: config.app.url + '/twitchAuthResult',
 	client_id: config.twitch.client_id,
 	client_secret: config.twitch.client_secret
 });
@@ -58,7 +59,7 @@ const pushbulletOAuth2 = oauth2({
 	auth_path: '/authorize',
 	token_path: '/oauth2/token',
 	postContentType: 'json',
-	redirect_uri: config.baseUrl + '/pushbulletAuthResult',
+	redirect_uri: config.app.url + '/pushbulletAuthResult',
 	client_id: config.pushbullet.client_id,
 	client_secret: config.pushbullet.client_secret
 });
@@ -68,14 +69,13 @@ app.use(pushbulletAuth);
 
 const pushbulletAuthResult = require('./routes/pushbulletAuthResult.js');
 pushbulletAuthResult.setOAuthClient(pushbulletOAuth2);
-// pushbulletAuthResult.setUserDAO(users);
 app.use(pushbulletAuthResult);
 
 const done = require('./routes/done.js');
 app.use(done);
 
 app.use('/', function(req, res) {
-	res.redirect('/twitchAuth');
+	res.redirect(config.app.basePath + '/twitchAuth');
 });
 
 // catch 404 and forward to error handler

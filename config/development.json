@@ -1,5 +1,9 @@
 {
-	"baseUrl": "http://localhost:3000",
+	"app": {
+		"host": "localhost",
+		"port": 3000,
+		"basePath": ""
+	},
 	"database": {
 		"host": "localhost",
 		"db": "twitch_pb",

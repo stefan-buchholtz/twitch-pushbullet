@@ -1,5 +1,8 @@
 {
-	"baseUrl": "http://serverchen.dlinkddns.com/twitch-pushbullet",
+	"app": {
+		"host": "serverchen.dlinkddns.com",
+		"basePath": "/twitch-pushbullet"
+	},
 	"database": {
 		"host": "localhost",
 		"db": "twitch_pb",

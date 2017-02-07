@@ -8,7 +8,6 @@
 		"host": "localhost",
 		"db": "twitch_pb",
 		"user": "twitch_pb",
-		"password": "tpb",
 		"log": false,
 		"maxPool": 20
 	},
@@ -20,14 +19,12 @@
 		"hostname": "api.twitch.tv",
 		"auth_path": "/kraken/oauth2/authorize",
 		"token_path": "/kraken/oauth2/token",
-		"client_id": "uk11k9xgn1rv1ojfbn1oucyomub1mv",
-		"client_secret": "ikpmf3twboj7u7c3e6zmq887qb8rvt"
+		"client_id": "uk11k9xgn1rv1ojfbn1oucyomub1mv"
 	},
 	"pushbullet": {
 		"hostname": "api.pushbullet.com",
 		"auth_path": "/oauth2/authorize",
 		"token_path": "/oauth2/token",
-		"client_id": "yTp4GcuKRhYHNSbJIOBfQxjmiLu2kMwC",
-		"client_secret": "lrj2EDNUU08MXV9bJR9jEmi5oClsTgdm"
+		"client_id": "yTp4GcuKRhYHNSbJIOBfQxjmiLu2kMwC"
 	}
 }

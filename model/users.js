@@ -61,7 +61,7 @@ module.exports.update = update;
 
 const insert = function(user, callback) {
 	var cbCalled = false;
-	database.query(INSERT, [user.email, user.twitch_user_id, user.twitch_name, user.twitch_token, user.twitch_fail_count || 0, user.pushbullet_token, user.pushbullet_fail_count || 0, new Date().toISOString()], (err) => {
+	database.query(INSERT, [user.email, user.twitch_user_id, user.twitch_name, user.twitch_token, user.twitch_fail_count || 0, user.pushbullet_token, user.pushbullet_fail_count || 0, new Date().toISOString()], (err, result) => {
 		if (cbCalled) {
 			return;
 		}
@@ -69,7 +69,7 @@ const insert = function(user, callback) {
 		if (err) {
 			return callback(err);
 		}
-		user.id = parseInt(database.lastInsertId());
+		user.id = parseInt(result.info.lastInsertId);
 		callback(null, user);
 	});
 };

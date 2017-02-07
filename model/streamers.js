@@ -36,7 +36,7 @@ module.exports.update = update;
 
 const insert = function(streamer, callback) {
 	var cbCalled = false;
-	database.query(INSERT, [streamer.name, streamer.display_name || streamer.name, streamer.channel_id, new Date().toISOString()], (err) => {
+	database.query(INSERT, [streamer.name, streamer.display_name || streamer.name, streamer.channel_id, new Date().toISOString()], (err, result) => {
 		if (cbCalled) {
 			return;
 		}
@@ -44,7 +44,7 @@ const insert = function(streamer, callback) {
 		if (err) {
 			return callback(err);
 		}
-		streamer.id = parseInt(database.lastInsertId());
+		streamer.id = parseInt(result.info.lastInsertId);
 		callback(null, streamer);
 	});
 };

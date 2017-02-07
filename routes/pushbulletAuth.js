@@ -9,7 +9,7 @@ const config = require('../config.js');
 var oauth;
 
 /* GET home page. */
-router.get(config.app.basePath + '/pushbulletAuth', function(req, res, next) {
+router.get('/pushbulletAuth', function(req, res, next) {
 	const params = { 
 		title: 'Step 2: Pushbullet Authorization',
 		authUrl: oauth.getAuthenticationUrl(req.session.stateToken),

@@ -6,7 +6,7 @@ const router = express.Router();
 const config = require('../config.js');
 
 /* GET home page. */
-router.get(config.app.basePath + '/done', function(req, res) {
+router.get('/done', function(req, res) {
 	const names = req.session.twitchFollows.map(follow => follow.channel.display_name );
 	const params = { 
 		title: 'Done',

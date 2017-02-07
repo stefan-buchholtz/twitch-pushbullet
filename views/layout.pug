@@ -9,9 +9,9 @@ html
 		
 		title= title
 	
-		link(rel='stylesheet', href='#{app.basePath}/stylesheets/bootstrap.min.css')
-		link(rel='stylesheet', href='#{app.basePath}/stylesheets/bootstrap-theme.min.css')
-		link(rel='stylesheet', href='#{app.basePath}/stylesheets/style.css')
+		link(rel='stylesheet', href=app.basePath + '/stylesheets/bootstrap.min.css')
+		link(rel='stylesheet', href=app.basePath + '/stylesheets/bootstrap-theme.min.css')
+		link(rel='stylesheet', href=app.basePath + '/stylesheets/style.css')
 
 	body
 		nav.navbar.navbar-inverse.navbar-fixed-top
@@ -36,5 +36,5 @@ html
 			.main-page
 				block content
 
-		script(src='#{app.basePath}/javascripts/jquery-3.1.1.min.js')
-		script(src='#{app.basePath}/javascripts/bootstrap.min.js')
+		script(src=app.basePath + '/javascripts/jquery-3.1.1.min.js')
+		script(src=app.basePath + '/javascripts/bootstrap.min.js')

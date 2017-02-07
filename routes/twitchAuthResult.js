@@ -10,7 +10,7 @@ const config = require('../config.js');
 var oauth;
 
 /* GET home page. */
-router.get(config.app.basePath + '/twitchAuthResult', function(req, res, next) {
+router.get('/twitchAuthResult', function(req, res, next) {
 	const state = req.query.state;
 	if (req.session.stateToken !== state) {
 		console.log('state token not valid', req.session.stateToken, state);

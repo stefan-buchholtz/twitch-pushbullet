@@ -25,16 +25,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
 	resave: false,
 	saveUninitialized: false,
 	secret: 'iridium-next-1',
+	name: 'twitch-pushbullet.sid',
 	cookie: {
 		secure: false,
-		sameSite: true
+		sameSite: 'lax'
 	}
 }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 const twitchOAuth2 = oauth2({
 	hostname: 'api.twitch.tv',
@@ -73,7 +74,7 @@ app.use(pushbulletAuthResult);
 const done = require('./routes/done.js');
 app.use(done);
 
-app.use(config.app.basePath + '/', function(req, res) {
+app.get('/', function(req, res) {
 	res.redirect(config.app.basePath + '/twitchAuth');
 });
 

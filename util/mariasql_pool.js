@@ -215,6 +215,7 @@ Pool.prototype._update = function() {
 				connection.query(pending.query, pending.options)
 					.on('result', function(result) {
 						log('Query:', pending.query, 'returning result');
+						const lastInsertId = connection.lastInsertId();
 						connection.end();
 						var rows = [];
 						result.on('data', function(row) {
@@ -235,6 +236,7 @@ Pool.prototype._update = function() {
 								log('Query: ', pending.query);
 								log('Query result: ', result.info);
 								rows.info = result.info;
+								rows.info.lastInsertId = lastInsertId;
 								pending.fn(null, rows);
 							});
 					})

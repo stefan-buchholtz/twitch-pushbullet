@@ -2,7 +2,6 @@
 
 const oauth2 = require('./services/oauth2.js');
 const config = require('./config.js');
-console.log(config.app.url);
 
 const twitchPushbulletService = require('./services/twitchPushbulletService.js');
 
@@ -74,7 +73,7 @@ app.use(pushbulletAuthResult);
 const done = require('./routes/done.js');
 app.use(done);
 
-app.use('/', function(req, res) {
+app.use(config.app.basePath + '/', function(req, res) {
 	res.redirect(config.app.basePath + '/twitchAuth');
 });
 

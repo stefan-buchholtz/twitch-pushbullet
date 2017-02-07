@@ -5,15 +5,17 @@ const twitchApi = require('../services/twitchApi.js');
 const express = require('express');
 const router = express.Router();
 
+const config = require('../config.js');
+
 var oauth;
 
 /* GET home page. */
-router.get('/twitchAuthResult', function(req, res, next) {
+router.get(config.app.basePath + '/twitchAuthResult', function(req, res, next) {
 	const state = req.query.state;
 	if (req.session.stateToken !== state) {
 		console.log('state token not valid', req.session.stateToken, state);
 		flash.set(req, 'Possible hacking attempt - twitch authentication failed.');
-		res.redirect('/');
+		res.redirect(config.app.basePath + '/');
 		return;
 	}
 	const authCode = req.query.code;
@@ -21,14 +23,14 @@ router.get('/twitchAuthResult', function(req, res, next) {
 		if (err) {
 			console.log('access token fetch failed', err);
 			flash.set(req, err.message);
-			res.redirect('/');
+			res.redirect(config.app.basePath + '/');
 			return;
 		}
 		twitchApi.getUser(accessToken, (err, user) => {
 			if (err) {
 				console.log('get user info failed', err);
 				flash.set(req, err.message);
-				res.redirect('/');
+				res.redirect(config.app.basePath + '/');
 				return;
 			}
 			req.session.user = {
@@ -41,11 +43,11 @@ router.get('/twitchAuthResult', function(req, res, next) {
 				if (err) {
 					console.log('get followed channels failed', err);
 					flash.set(req, err.message);
-					res.redirect('/');
+					res.redirect(config.app.basePath + '/');
 					return;
 				}
 				req.session.twitchFollows = follows;
-				res.redirect('/pushbulletAuth');
+				res.redirect(config.app.basePath + '/pushbulletAuth');
 			});
 		});
 	});

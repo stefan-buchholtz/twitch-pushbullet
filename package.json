@@ -28,7 +28,9 @@
     "pushbullet": "^1.4.3",
     "raw-body": "^2.2.0",
     "serve-favicon": "~2.3.0",
-    "twitch-api": "^0.4.5"
+    "twitch-api": "^0.4.5",
+    "winston": "^2.3.1",
+    "winston-logrotate": "^1.0.0"
   },
   "devDependencies": {
     "grunt": "^1.0.1",

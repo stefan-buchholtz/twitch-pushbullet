@@ -7,8 +7,11 @@ const twitchPushbulletService = require('./services/twitchPushbulletService.js')
 
 const express = require('express');
 const path = require('path');
+
 // const favicon = require('serve-favicon');
-const logger = require('morgan');
+
+const morgan = require('morgan');
+const logger = require('./util/logger.js');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -21,7 +24,7 @@ app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger('short'), { stream: logger.stream });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

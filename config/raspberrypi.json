@@ -13,7 +13,7 @@
 	"logging": {
 		"level": "info",
 		"rotate": {
-			"file": "/var/log/twitch-pushbullet.log",
+			"file": "/var/log/node/twitch-pushbullet.log",
 			"colorize": false,
 			"timestamp": true,
 			"json": false,

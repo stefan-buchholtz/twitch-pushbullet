@@ -11,6 +11,8 @@ const userDAO = require('../model/users.js');
 const streamerDAO = require('../model/streamers.js');
 const userMapStreamerDAO = require('../model/usersMapStreamers.js');
 
+const logger = require('../util/logger.js');
+
 const currentLiveStreamers = new Map();
 
 const writeChannelFollows = function(user, follows, callback) {
@@ -141,19 +143,19 @@ module.exports.pushNewLiveStreamers = pushNewLiveStreamers;
 
 function makeTask(task, taskName) {
 	return () => {
-		console.log(taskName, 'start');
+		logger.verbose(taskName + ' start');
 		task((err) => {
 			if (err) {
-				console.log(taskName, 'error:', err);
+				logger.error(taskName, 'error:', err);
 				return;
 			}
-			console.log(taskName, 'done');
+			logger.verbose(taskName + ' done');
 		});
 	};
 }
 
 module.exports.initRegularTasks = function() {
-	console.log('start init');
+	logger.info('start init');
 	const pushNewLiveStreamersTask = makeTask(pushNewLiveStreamers, 'pushNewLiveStreamers');
 	const updateAllUserChannelFollowsTask = makeTask(updateAllUserChannelFollows, 'updateAllUserChannelFollows');
 	
@@ -162,8 +164,8 @@ module.exports.initRegularTasks = function() {
 	
 	async.series([updateAllUserChannelFollows, pushNewLiveStreamers], (err) => {
 		if (err) {
-			console.log('Error first update:', err);			
+			logger.error('Error first update:', err);			
 		}
-		console.log('init done');
+		logger.info('init done');
 	});
 };

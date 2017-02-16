@@ -2,6 +2,7 @@
 
 const mariasql = require('mariasql');
 const date_format = require('date-format');
+const logger = require('./logger.js');
 
 var iflog = false;
 /**
@@ -41,8 +42,8 @@ function Pool(max, options) {
 function log() {
 	if (iflog) {
 		const logtimestamp = date_format("[yyyy-MM-dd hh:mm:ss]", new Date());
-		console.log.apply(console, ['[my_pool_sql]' + logtimestamp].concat(Array.from(arguments)));
-	}	
+		logger.verbose.apply(logger, ['[my_pool_sql]' + logtimestamp].concat(Array.from(arguments)).join(' '));
+	}
 }
 
 /**
@@ -104,7 +105,7 @@ Pool.prototype.query = function(query, options, fn) {
 	//console.log('[my_pool_sql] The pool size before query: ', this._connections.length);
 	if (!this._disposed) {
 		// Check if the options variable is a function.
-		if (typeof options == 'function') {
+		if (typeof options === 'function') {
 			// Set the callback to the options.
 			fn = options;
 			// Initialize the options.
@@ -173,7 +174,7 @@ Pool.prototype._create = function() {
 		.on('error', function(err) {
 			// Check if the connection has been lost.
 			if (err.fatal && err.code !== 'PROTOCOL_CONNECTION_LOST') {
-				console.log(err);
+				logger.error(err);
 				// Decrement the current number of _connections.
 				pool._currentNumberOfConnections--;
 			}
@@ -246,17 +247,12 @@ Pool.prototype._update = function() {
 					.on('error', function(err) {
 						// Send the error to the callback function.
 						connection.end();
-						if (iflog) {
-							var logtimestamp = date_format("[yyyy-MM-dd hh:mm:ss]", new Date());
-							console.log('[my_pool_sql]' + logtimestamp + ' Query error: ', err);
-						}
+						var logtimestamp = date_format("[yyyy-MM-dd hh:mm:ss]", new Date());
+						logger.error('[my_pool_sql]' + logtimestamp + ' Query error ', err);
 						pending.fn(err);
 					})
 					.on('end', function() {
-						if (iflog) {
-							var logtimestamp = date_format("[yyyy-MM-dd hh:mm:ss]", new Date());
-							console.log('[my_pool_sql]' + logtimestamp + ' Query done');
-						}
+						log('Query done');
 					});
 			}
 

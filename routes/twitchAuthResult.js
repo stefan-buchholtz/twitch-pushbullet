@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 
 const flash = require('../util/flash.js');
+const logger = require('../util/logger.js');
 const twitchApi = require('../services/twitchApi.js');
 const express = require('express');
 const router = express.Router();
@@ -13,7 +14,7 @@ var oauth;
 router.get('/twitchAuthResult', function(req, res, next) {
 	const state = req.query.state;
 	if (req.session.stateToken !== state) {
-		console.log('state token not valid', req.session.stateToken, state);
+		logger.warn('state token not valid: %s != %s', req.session.stateToken, state);
 		flash.set(req, 'Possible hacking attempt - twitch authentication failed.');
 		res.redirect(config.app.basePath + '/');
 		return;
@@ -21,14 +22,14 @@ router.get('/twitchAuthResult', function(req, res, next) {
 	const authCode = req.query.code;
 	oauth.getAccessToken(authCode, state, (err, accessToken) => {
 		if (err) {
-			console.log('access token fetch failed', err);
+			logger.error('access token fetch failed', err);
 			flash.set(req, err.message);
 			res.redirect(config.app.basePath + '/');
 			return;
 		}
 		twitchApi.getUser(accessToken, (err, user) => {
 			if (err) {
-				console.log('get user info failed', err);
+				logger.error('get user info failed', err);
 				flash.set(req, err.message);
 				res.redirect(config.app.basePath + '/');
 				return;
@@ -41,7 +42,7 @@ router.get('/twitchAuthResult', function(req, res, next) {
 			};
 			twitchApi.getFollowedChannels(user._id, (err, follows) => {
 				if (err) {
-					console.log('get followed channels failed', err);
+					logger.error('get followed channels failed', err);
 					flash.set(req, err.message);
 					res.redirect(config.app.basePath + '/');
 					return;

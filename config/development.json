@@ -11,6 +11,18 @@
 		"log": false,
 		"maxPool": 20
 	},
+	"logging": {
+		"level": "info",
+		"rotate": {
+			"file": "C:/temp/twitch-pushbullet.log", 
+			"colorize": false,
+			"timestamp": true,
+			"json": false,
+			"max": "10m",
+			"keep": 5,
+			"compress": true
+		}
+	},
 	"updates": {
 		"checkLiveInterval": 30000,
 		"updateFollowsInterval": 86400000

@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 
 const async = require('async');
+const dateFormat = require('date-format');
 
 require('../util/setExtension.js');
 const twitchApi = require('./twitchApi.js');
@@ -120,7 +121,8 @@ function fetchFollowersForStreamers(streamers, callback) {
 }
 
 function pushStreamerLiveNotifications(streamer, users, callback) {
-	const title = streamer.display_name + ' just went live.';
+	const dateStr = dateFormat('dd.MM.yyyy hh:mm', new Date());
+	const title = streamer.display_name + ' went live on ' + dateStr;
 	async.eachSeries(users, (user, cb) => {
 		pushbulletApi.pushLink(user.pushbullet_token, streamer.url, title, cb);
 	}, callback);

@@ -121,8 +121,8 @@ function fetchFollowersForStreamers(streamers, callback) {
 }
 
 function pushStreamerLiveNotifications(streamer, users, callback) {
-	const dateStr = dateFormat('dd.MM.yyyy hh:mm', new Date());
-	const title = streamer.display_name + ' went live on ' + dateStr;
+	const timeStr = dateFormat('hh:mm', new Date());
+	const title = streamer.display_name + ' went live on ' + timeStr;
 	async.eachSeries(users, (user, cb) => {
 		pushbulletApi.pushLink(user.pushbullet_token, streamer.url, title, cb);
 	}, callback);

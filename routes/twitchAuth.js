@@ -12,7 +12,7 @@ const SCOPES = 'user_read';
 var oauth;
 
 /* GET home page. */
-router.get('/twitchAuth', function(req, res, next) {
+router.get('/twitchAuth', (req, res, next) => {
 	oauth.generateStateToken(function(err, stateToken) {
 		req.session.stateToken = stateToken;
 		const twitchAuthUrl = oauth.getAuthenticationUrl(stateToken, { scope: SCOPES });

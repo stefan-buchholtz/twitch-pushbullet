@@ -13,7 +13,7 @@ const logger = require('../util/logger.js');
 var oauth;
 
 /* GET home page. */
-router.get('/pushbulletAuthResult', function(req, res, next) {
+router.get('/pushbulletAuthResult', (req, res, next) => {
 	const state = req.query.state;
 	if (req.session.stateToken !== state) {
 		logger.warn('state token not valid: %s != %s', req.session.stateToken, state);

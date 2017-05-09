@@ -14,7 +14,7 @@
 	"logging": {
 		"level": "info",
 		"rotate": {
-			"file": "C:/temp/twitch-pushbullet.log", 
+			"file": "/tmp/twitch-pushbullet.log", 
 			"colorize": false,
 			"timestamp": true,
 			"json": false,

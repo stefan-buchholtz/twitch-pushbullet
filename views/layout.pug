@@ -25,12 +25,10 @@ html
 					a.navbar-brand(href=app.basePath + '/') Twitch-PushBullet
 				#navbar.collapse.navbar-collapse
 					ul.nav.navbar-nav
-						li.active
+						li(class=!aboutPage ? "active" : "")
 							a(href=app.basePath + '/') Home
-						li
+						li(class=aboutPage ? "active" : "")
 							a(href=app.basePath + '/about') About
-						li
-							a(href=app.basePath + '/contact') Contact
 
 		.container
 			.main-page

@@ -77,6 +77,10 @@ app.use(pushbulletAuthResult);
 const done = require('./routes/done.js');
 app.use(done);
 
+app.get('/about', function(req, res) {
+	res.render('about', { app: config.app, aboutPage: true });
+});
+
 app.get('/', function(req, res) {
 	res.redirect(config.app.basePath + '/twitchAuth');
 });
